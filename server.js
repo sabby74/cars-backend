@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const PORT =process.env.PORT || 7070;
 const serviceController = require('./controllers/servicecontroller');
 const authController = require('./controllers/authController');
+const ScheduleController = require('./controllers/scheduleController');
 const session = require("express-session")
 
 const cors = require('cors');
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(cors());
 app.use('/service', serviceController);
 app.use('/user', authController);
+app.use('/schedule', ScheduleController);
 app.use(morgan('tiny'));
 
 
