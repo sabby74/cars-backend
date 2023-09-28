@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
 
 
@@ -37,6 +38,10 @@ router.post("/login",async (req,res) =>{
       }else{
         res.send("incorrect password")
       }
+       // Generate a token
+  const token = jwt.sign({ userId: user._id }, 'hhshhshhs', { expiresIn: '1h' });
+
+  res.json({ token });
     })
     }
     
@@ -55,6 +60,22 @@ router.post("/login",async (req,res) =>{
         res.send(newUser);
       });
     }
+  });
+
+
+
+  router.get('/login', (req, res) => {
+    res.re('login');
+  });
+
+
+  router.get('/signup', (req, res) => {
+    res.render('signup');
+  });
+
+  router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/login');
   });
 
 
