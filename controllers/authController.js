@@ -11,15 +11,9 @@ const jwt = require('jsonwebtoken');
 
     // INDEX DELETE UPDATE  CREATE   SHOW
 
-    //index route
-router.get("/", async (req, res) => {
-    try {
-      const newUsers = await User.find({});
-      res.status(200).json(newUsers);
-    } catch (error) {
-      res.status(400).json(error);
-    }
-});
+    router.get("/login", (req,res)=>{
+      res.render("auth/login")
+    })
 
 
 //login route
@@ -38,18 +32,15 @@ router.post("/login",async (req,res) =>{
       }else{
         res.send("incorrect password")
       }
-       // Generate a token
-  const token = jwt.sign({ userId: user._id }, 'hhshhshhs', { expiresIn: '1h' });
-
-  res.json({ token });
+   
     })
     }
     
   })
 
    //create a user
-  router.post("/", async (req, res) => {
-    // console.log(req.body);
+  router.post("/signup", async (req, res) => {
+    console.log(req.body);
     //hashing a passoword with bcrypt before User.create()
     if (req.body.username && req.body.password) {
       let plainTextPassword = req.body.password;
@@ -63,14 +54,24 @@ router.post("/login",async (req,res) =>{
   });
 
 
+  // SHOW
+router.get("/:id", async (req, res) => {
+    try {
+      res.json(await User.findById(req.params.id));
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
+
+
 
   router.get('/login', (req, res) => {
-    res.re('login');
+    res.render('login');
   });
 
 
   router.get('/signup', (req, res) => {
-    res.render('signup');
+    res.render('auth/signup');
   });
 
   router.get('/logout', (req, res) => {
