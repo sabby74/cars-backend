@@ -28,17 +28,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
-//create a service
-router.post("/", async (req, res) => {
-  try {
-    const createdService = await Service.create(req.body);
-    res.status(200).json(createdService);
-  } catch (error) {
-    res.status(400).json(error);
-  }
-});
-
 // //delete a service
 // router.delete("/:id", async (req, res) => {
 //   try {
@@ -59,18 +48,58 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-//update a service
+// //update a service
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const updatedService = await Service.findByIdAndUpdate(
+//       req.params.id,
+//       req.body,
+//       { new: true }
+//     );
+//     res.status(200).json(updatedService);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// });
+
+// UPDATE
 router.put("/:id", async (req, res) => {
+  console.log(req.body);
   try {
-    const updatedService = await Service.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
+    res.json(
+      await Service.findByIdAndUpdate(req.params.id, req.body, { new: true })
     );
-    res.status(200).json(updatedService);
   } catch (error) {
     res.status(400).json(error);
   }
 });
+
+
+
+
+//create a service
+router.post("/", async (req, res) => {
+  try {
+    const createdService = await Service.create(req.body);
+    res.status(200).json(createdService);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+
+
+// SHOW
+router.get("/:id", async (req, res) => {
+  try {
+    res.json(await Jeans.findById(req.params.id));
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+
+
+
 
 module.exports = router;
