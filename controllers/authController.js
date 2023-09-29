@@ -48,7 +48,7 @@ router.post("/login",async (req,res) =>{
   })
 
    //create a user
-  router.post("/signup", async (req, res) => {
+  router.post("/", async (req, res) => {
     // console.log(req.body);
     //hashing a passoword with bcrypt before User.create()
     if (req.body.username && req.body.password) {
