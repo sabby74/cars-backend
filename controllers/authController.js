@@ -24,9 +24,7 @@ const jwt = require('jsonwebtoken');
         }
     })
 
-    router.get("/login", (req,res)=>{
-      res.render("auth/login")
-    })
+  
 
 
 //login route
@@ -78,14 +76,14 @@ router.get("/:id", async (req, res) => {
 
 
 
-  router.get('/login', (req, res) => {
-    res.render('login');
-  });
+  // router.get('/login', (req, res) => {
+  //   res.render('login');
+  // });
 
 
-  router.get('/signup', (req, res) => {
-    res.render('auth/signup');
-  });
+  // router.get('/signup', (req, res) => {
+  //   res.render('auth/signup');
+  // });
 
   router.get('/logout', (req, res) => {
     req.session.destroy();
