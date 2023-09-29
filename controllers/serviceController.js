@@ -39,11 +39,21 @@ router.post("/", async (req, res) => {
   }
 });
 
-//delete a service
+// //delete a service
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const deletedService = await Service.findByIdAndDelete(req.params.id);
+//     res.status(200).json(deletedService);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// });
+
+
+// DELETE
 router.delete("/:id", async (req, res) => {
   try {
-    const deletedService = await Service.findByIdAndDelete(req.params.id);
-    res.status(200).json(deletedService);
+    res.json(await Service.findByIdAndDelete(req.params.id));
   } catch (error) {
     res.status(400).json(error);
   }
