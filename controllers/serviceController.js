@@ -47,17 +47,6 @@ router.put("/:id", async (req, res) => {
 
 
 
-
-// //create a service
-// router.post("/", async (req, res) => {
-//   try {
-//     const createdService = await Service.create(req.body);
-//     res.status(200).json(createdService);
-//   } catch (error) {
-//     res.status(400).json(error);
-//   }
-// });
-
 // CREATE
 router.post("/", async (req, res) => {
   try {
