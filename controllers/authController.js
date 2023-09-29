@@ -9,7 +9,20 @@ const jwt = require('jsonwebtoken');
 //INDUCES
 
 
-    // INDEX DELETE UPDATE  CREATE   SHOW
+    // INDEX DELETE UPDATE  CREATE   
+    
+    
+    
+    //SHOW
+
+    router.get("/", async (req,res) =>{
+
+        try{
+            res.json(await User.find({}));
+        }catch(error){
+            res.status(400).json(error)
+        }
+    })
 
     router.get("/login", (req,res)=>{
       res.render("auth/login")
