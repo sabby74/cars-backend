@@ -7,16 +7,18 @@ const serviceController = require('./controllers/serviceController');
 const authController = require('./controllers/authController');
 const ScheduleController = require('./controllers/scheduleController');
 const session = require("express-session")
-
 const morgan = require('morgan');
 const cors = require('cors');
 
 app.use(session({ secret: 'randomkeyyyyyy', cookie: { maxAge: 3600000 }}))
 app.use(express.static('public'));
 
-app.use(cors());
 app.use (express.urlencoded({extended: true}));
 app.use(express.json());
+app.use(cors());
+
+
+
 app.use('/service', serviceController);
 app.use('/user', authController);
 app.use('/schedule', ScheduleController);
