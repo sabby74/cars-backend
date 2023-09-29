@@ -10,14 +10,23 @@ const Service = require("../models/Service");
 //we dont to do full induces here because react will handle forms for us
 
 //index route
+// router.get("/", async (req, res) => {
+//   try {
+//     const newServices = await Service.find({});
+//     res.status(200).json(newServices);
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// })
+
+// INDEX
 router.get("/", async (req, res) => {
   try {
-    const newServices = await Service.find({});
-    res.status(200).json(newServices);
+    res.json(await Service.find({}));
   } catch (error) {
     res.status(400).json(error);
   }
-})
+});
 
 
 //create a service
