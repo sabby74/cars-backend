@@ -30,7 +30,7 @@ app.use('/user', authController);
 app.use((req, res, next) => {
   console.log(req.session);
   if (!req.session.userId) {
-    res.redirect("/login");
+    res.send("please login");
     return;
   }
   
