@@ -12,7 +12,7 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "https://carsapp-pgj8.onrender.com" }));
+app.use(cors({ credentials: true, origin: ["https://carsapp-pgj8.onrender.com", "http://localhost:3009"] }));
 
 
 app.use(
