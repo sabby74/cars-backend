@@ -20,7 +20,7 @@ app.use(
     secret: "random",
     resave: false,
     saveUninitialized: true,
-    cookie: { httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 24 * 7 },
+    cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 24 * 7 },
   })
 );
 app.use(morgan("tiny"));
@@ -46,5 +46,6 @@ app.get("/", (req, res) => {
 app.get("/test", (req, res) => {
   res.send("test");
 });
+
 
 app.listen(PORT, () => console.log("Server running on port " + PORT));
