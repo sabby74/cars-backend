@@ -20,7 +20,7 @@ app.use(
     secret: "random",
     resave: false,
     saveUninitialized: true,
-    cookie: { httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 24 * 7 },
+    cookie: { httpOnly: true, secure: false, maxAge: 1000 * 60 * 60 * 24 * 7 },
   })
 );
 app.use(morgan("tiny"));
@@ -30,7 +30,7 @@ app.use("/user", authController);
 app.use((req, res, next) => {
   console.log(req.session.userId);
   if (!req.session.userId) {
-    res.send("please login");
+    res.json({message: "please login"});
     return;
   }
 
