@@ -39,7 +39,7 @@ router.post("/login",async (req,res) =>{
       if(result){
         req.session.userId = userToLogin._id;
         req.session.name = userToLogin.name
-        res.redirect('/service')
+        res.json(' you are logged in')
       }else{
         res.send("incorrect password")
       }
@@ -85,9 +85,17 @@ router.get("/:id", async (req, res) => {
     res.render('auth/signup');
   });
 
+  
   router.get('/logout', (req, res) => {
-    req.session.destroy();
-    res.redirect('/login');
+    req.session.destroy(err => {
+      if (err) {
+        // handle error
+        return res.status(500).send('Failed to logout.');
+      }
+      // Clear the session cookie from the client-side
+      res.clearCookie('connect.sid');  // 'connect.sid' is the default cookie name used by express-session
+      return res.send('Logged out!');
+    });
   });
 
 

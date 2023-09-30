@@ -9,7 +9,9 @@ const session = require("express-session")
 const morgan = require('morgan');
 const cors = require('cors');
 
-app.use(session({ secret: 'randomkeyyyyyy', cookie: { maxAge: 3600000 }}))
+app.use(session({ secret: 'randomkeyyyyyy', resave: false,
+saveUninitialized: true,
+cookie: { httpOnly: true, secure: false, maxAge: 1000*60*60*24*7}}))
 
 
 
@@ -19,7 +21,7 @@ app.use(express.static('public'));
 
 app.use (express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors());
+app.use(cors({credentials: true, origin: 'http://localhost:3009'}));
 app.use(morgan('tiny'));
 
 
