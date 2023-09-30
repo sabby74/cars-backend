@@ -39,9 +39,9 @@ router.post("/login",async (req,res) =>{
       if(result){
         req.session.userId = userToLogin._id;
         req.session.name = userToLogin.name
-        res.json(' you are logged in')
+        res.json(true)
       }else{
-        res.send("incorrect password")
+        res.send(false)
       }
    
     })
