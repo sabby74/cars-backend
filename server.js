@@ -21,25 +21,25 @@ app.use(express.static('public'));
 
 app.use (express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors({credentials: true, origin: 'http://localhost:3009'}));
+app.use(cors({credentials: true,}));
 app.use(morgan('tiny'));
 
 
-app.use('/service', serviceController);
 app.use('/user', authController);
 
 app.use((req, res, next) => {
-    console.log(req.session);
-    if (!req.session.userId) {
-      res.redirect("/login");
-      return;
-    }
+  console.log(req.session);
+  if (!req.session.userId) {
+    res.redirect("/login");
+    return;
+  }
   
-    next();
-  });
+  next();
+});
 
 
 
+app.use('/service', serviceController);
 
 app.get('/', (req, res) => {
     res.send('cars app');

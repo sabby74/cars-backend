@@ -33,6 +33,7 @@ router.post("/login",async (req,res) =>{
     let userToLogin = await User.findOne({username: req.body.username })
     //just to compare the passwords entered with req.body
     if(userToLogin){
+      console.log(true);
         bcrypt.compare(req.body.password, userToLogin.password,(err,result) => {
 
       
