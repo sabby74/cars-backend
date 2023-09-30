@@ -81,9 +81,9 @@ router.get("/:id", async (req, res) => {
   // });
 
 
-  // router.get('/signup', (req, res) => {
-  //   res.render('auth/signup');
-  // });
+  router.get('/signup', (req, res) => {
+    res.render('auth/signup');
+  });
 
   router.get('/logout', (req, res) => {
     req.session.destroy();
